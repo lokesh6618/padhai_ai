@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*$py.class
+
+# Virtual Environment
+
+# Django-specific files
+*.log
+*.pot
+db.sqlite3
+static_collected/ # Or whatever your STATIC_ROOT is
+
+# Local settings (replace 'myproject' with your project's name)
+myproject/local_settings.py
+
+# IDE-specific files
+.idea/
+.vscode/
+# Uncomment the following if you want to explicitly NOT ignore some VS Code files for team consistency:
+# !.vscode/settings.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Test and Coverage
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Packaging and distribution
+build/
+dist/
+*.egg-info/
+*.egg
+*.whl
+
+# Compiled translation files
+*.mo
+
+# Any other temporary files
+*.bak
