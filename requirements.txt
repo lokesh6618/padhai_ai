@@ -1,0 +1,25 @@
+# ── core stack ─────────────────────────────────────────────
+Django==5.0.4                     # web framework
+djangorestframework==3.15.1       # REST API layer
+djangorestframework-simplejwt==5.4.0  # JWT auth for DRF
+django-filter==24.2               # filter back‑ends for DRF list views
+
+# ── dev & config helpers ──────────────────────────────────
+django-environ==0.11.2            # .env / settings management
+watchfiles==0.21.0                # inotify‑powered auto‑reload
+black==24.4.2                     # code formatter (optional)
+isort==5.13.2                     # import sorter (optional)
+
+# ── media & static files ──────────────────────────────────
+Pillow==10.3.0                    # ImageField support
+whitenoise[brotli]==6.6.0         # serve static files in prod (optional)
+
+# ── database driver (pick one) ────────────────────────────
+psycopg2-binary==2.9.9            # PostgreSQL; comment out if using SQLite
+
+# ── testing (optional) ─────────────────────────────────────
+pytest==8.2.0
+pytest-django==4.8.0
+
+gunicorn==22.0.0
+coverage==7.5.1

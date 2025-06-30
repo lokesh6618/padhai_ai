@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6 text-center">📝 Exam Preparation Zone</h1>
+
+<!-- Previous Year Papers -->
+<section class="mb-10">
+  <h2 class="text-xl font-semibold text-blue-700 mb-3">📄 Previous Year Papers</h2>
+  {% for paper in papers %}
+  <div class="bg-white shadow-md rounded-2xl p-6 mb-4">
+    <p class="text-lg font-semibold">{{ paper.year }} CBSE {{ paper.subject.name }} Paper</p>
+    <p class="text-gray-600">🕒 Time: {{ paper.total_time|timesince:"0" }} | 📈 Marks: {{ paper.total_marks }}</p>
+    <div class="mt-4 flex gap-4 flex-wrap">
+      <a href="{% url 'exam:start-paper' paper.year %}"
+         class="bg-green-500 text-white px-4 py-2 rounded">▶️ Start Test</a>
+      <a href="{% url 'exam:pdf' paper.year %}"
+         class="bg-blue-500 text-white px-4 py-2 rounded">📄 View PDF</a>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<!-- Chapter‑wise dropdown -->
+<section class="mb-10">
+  <h2 class="text-xl font-semibold text-green-700 mb-3">📘 Chapter-wise Practice Tests</h2>
+  <div class="bg-white shadow-md rounded-2xl p-6">
+    <form method="get" action="#">
+      <label class="block mb-2 text-gray-700">Select a chapter:</label>
+      <select name="chapter" class="w-full border border-gray-300 rounded-lg p-3">
+        <option value="">-- Select Chapter --</option>
+        {% for ch in chapters %}
+        <option value="{{ ch.id }}">Ch {{ ch.number }} – {{ ch.name }}</option>
+        {% endfor %}
+      </select>
+      <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded">📘 Start Practice</button>
+    </form>
+  </div>
+</section>
+
+<!-- … keep the rest of your static sections … -->
