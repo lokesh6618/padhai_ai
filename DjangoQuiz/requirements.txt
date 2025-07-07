@@ -1,0 +1,30 @@
+# ── core stack ─────────────────────────────────────────────
+Django                  # web framework
+djangorestframework      # REST API layer
+djangorestframework-simplejwt  # JWT auth for DRF
+django-filter             # filter back‑ends for DRF list views
+
+# ── dev & config helpers ──────────────────────────────────
+django-environ           # .env / settings management
+watchfiles               # inotify‑powered auto‑reload
+black                    # code formatter (optional)
+isort                     # import sorter (optional)
+
+# ── media & static files ──────────────────────────────────
+Pillow                    # ImageField support
+whitenoise[brotli]        # serve static files in prod (optional)
+
+# ── database driver (pick one) ────────────────────────────
+psycopg2-binary           # PostgreSQL; comment out if using SQLite
+
+# ── testing (optional) ─────────────────────────────────────
+pytest
+pytest-django
+
+gunicorn
+coverage
+
+
+# Username (superuser): admin_66  
+# Email address: admin_66@gmail.com
+# Password: Qwerty@123456

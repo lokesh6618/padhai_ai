@@ -1,0 +1,46 @@
+{% extends "Quiz/dependencies.html" %}
+
+{% block title %}Quiz Result{% endblock %}
+
+{% block content %}
+  <h1 class="text-3xl font-bold mb-6 text-center">🏁 Quiz Result</h1>
+
+  <div class="max-w-xl mx-auto bg-white shadow-md rounded-2xl overflow-hidden">
+    <img src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg"
+         alt="Celebration illustration"
+         class="w-full h-48 object-cover">
+
+    <div class="p-6 space-y-3">
+      <p class="text-lg font-semibold">Score: {{ score }}/20</p>
+
+      <div>
+        <p class="mb-1 font-medium">Percentage: {{ percent }}%</p>
+        <!-- Simple progress bar -->
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-green-500 h-3 rounded-full"
+               style="width: {{ percent }}%"></div>
+        </div>
+      </div>
+
+      <p>⏱️ Time Taken: {{ time }} seconds</p>
+      <p>✅ Correct Answers: {{ correct }}</p>
+      <p>❌ Incorrect Answers: {{ wrong }}</p>
+      <p>📊 Total Questions: {{ total }}</p>
+
+      <p class="mt-4 text-center text-xl font-semibold text-green-700">
+        All the best for your next quiz! 🎉
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <a href="{% url 'start_quiz' %}"
+       class="inline-block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
+      Try Again ↻
+    </a>
+    <a href="{% url 'home' %}"
+       class="inline-block ml-4 bg-gray-600 text-white px-5 py-2 rounded-lg hover:bg-gray-700">
+      Back to Home
+    </a>
+  </div>
+{% endblock %}

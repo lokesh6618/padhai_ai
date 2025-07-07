@@ -1,0 +1,25 @@
+{% load static %}
+ 
+<style>
+  .greet{
+    font-size: 18px;
+    color: #fff;
+    margin-right: 20px;
+  }
+</style>
+ 
+
+<header class="bg-white shadow">
+  <nav class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+    <a href="{% url 'home' %}" class="text-xl font-bold text-blue-600">📝 Exam Prep Zone</a>
+
+    {% if user.is_authenticated %}
+      <span class="text-gray-700">Hi <strong>{{ user.get_short_name|default:user.username }}</strong></span>
+      <a href="{% url 'logout' %}"
+         class="ml-4 bg-red-500 text-white px-3 py-1.5 rounded">Logout</a>
+    {% else %}
+      <a href="{% url 'login' %}"
+         class="bg-blue-500 text-white px-3 py-1.5 rounded">Login</a>
+    {% endif %}
+  </nav>
+</header>

@@ -1,0 +1,95 @@
+{% extends "Quiz/dependencies.html" %}
+{% load static %}
+{% block title %}Maths Quiz{% endblock %}
+
+{% block content %}
+  <h2 class="text-2xl font-bold mb-4 text-center">
+    Maths (2024 • Code 30‑1‑1) — 20 Questions • 30 min • 20 marks
+  </h2>
+
+  <!-- Countdown -->
+  <div id="clock"
+       class="mb-6 text-center text-lg font-semibold text-red-600"></div>
+
+  <!-- Quiz form -->
+  <form id="quiz-form"
+        method="post"
+        action="{% url 'submit_quiz' %}"
+        class="space-y-8">
+    {% csrf_token %}
+
+    {% for q in questions %}
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <!-- Stem image -->
+        {% if q.image %}
+          <img src="{{ q.image.url }}"
+               alt="Question {{ forloop.counter }}"
+               class="w-full max-w-2xl mx-auto mb-4">
+        {% endif %}
+
+        <!-- Option radios -->
+        <ul class="space-y-2">
+          <li>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="q{{ q.id }}" value="1"
+                     class="form-radio" required>
+              <span><strong>(a)</strong> {{ q.op1 }}</span>
+            </label>
+          </li>
+
+          <li>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="q{{ q.id }}" value="2"
+                     class="form-radio">
+              <span><strong>(b)</strong> {{ q.op2 }}</span>
+            </label>
+          </li>
+
+          <li>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="q{{ q.id }}" value="3"
+                     class="form-radio">
+              <span><strong>(c)</strong> {{ q.op3 }}</span>
+            </label>
+          </li>
+
+          <li>
+            <label class="flex items-center gap-2">
+              <input type="radio" name="q{{ q.id }}" value="4"
+                     class="form-radio">
+              <span><strong>(d)</strong> {{ q.op4 }}</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+    {% endfor %}
+
+    <div class="text-center">
+      <button type="submit"
+              class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">
+        Submit Now
+      </button>
+    </div>
+  </form>
+{% endblock content %}
+
+{% block script %}
+<script>
+  /* 30‑minute countdown */
+  const deadline   = Date.now() + 30 * 60 * 1000;
+  const clock      = document.getElementById("clock");
+  const quizForm   = document.getElementById("quiz-form");
+
+  function updateClock() {
+    const ms = deadline - Date.now();
+    if (ms <= 0) { quizForm.submit(); return; }
+    const m  = Math.floor(ms / 60000);
+    const s  = Math.floor(ms / 1000) % 60;
+    clock.textContent =
+      `⏳ ${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+  }
+  updateClock();
+  const iv = setInterval(updateClock, 1000);
+  quizForm.addEventListener("submit", () => clearInterval(iv));
+</script>
+{% endblock script %}

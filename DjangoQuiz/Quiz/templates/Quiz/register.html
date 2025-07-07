@@ -1,0 +1,45 @@
+{% extends "Quiz/dependencies.html" %}
+{% load static %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+  <h2 class="text-3xl font-bold text-center mb-6">Create an Account</h2>
+
+  <form method="post"
+        action="{% url 'register' %}"
+        class="max-w-md mx-auto bg-white p-8 shadow-md rounded-xl space-y-5">
+    {% csrf_token %}
+
+    {# --- non‑field errors (e.g. username taken) --- #}
+    {% if form.non_field_errors %}
+      <div class="text-red-600 text-sm">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    {# --- loop over the UserCreationForm fields --- #}
+    {% for field in form %}
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">
+          {{ field.label }}
+        </label>
+        {{ field }}
+        {% if field.errors %}
+          <p class="text-red-600 text-xs mt-1">{{ field.errors|striptags }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <button type="submit"
+            class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg">
+      Register
+    </button>
+
+    <p class="text-center text-sm mt-3">
+      Already have an account?
+      <a href="{% url 'login' %}" class="text-blue-600 hover:underline">
+        Sign in
+      </a>
+    </p>
+  </form>
+{% endblock %}

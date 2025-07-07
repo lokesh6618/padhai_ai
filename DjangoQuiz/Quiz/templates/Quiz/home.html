@@ -1,0 +1,105 @@
+{% extends 'Quiz/dependencies.html' %}
+
+{% block content %}
+{% load static %}
+<h1 class="text-3xl font-bold mb-6 text-center">📝 Exam Preparation Zone</h1>
+
+<!-- Put any dashboard cards or announcements here -->
+<section class="mb-10"></section>
+<div class="text-center">
+    <p class="mb-6 text-gray-700">Ready to test yourself on the 2024 CBSE Maths paper?</p>
+    <p class="text-gray-600">🕒 Time: 30 Minutes | 📈 Marks: 20</p>
+
+    <div class="mt-4 flex gap-4">
+        <a href="{% url 'start_quiz' %}" class="bg-green-600 text-white px-6 py-3 rounded text-lg hover:bg-green-700">
+            ▶️ Start 30‑minute Quiz
+        </a>
+
+        <button class="bg-blue-500 text-white px-4 py-2 rounded">📄 View PDF</button>
+        <button class="bg-purple-500 text-white px-4 py-2 rounded">🔍 View Solutions</button>
+    </div>
+
+</div>
+</section>
+
+<!-- Mock Tests Section -->
+<section class="mb-10">
+    <h2 class="text-xl font-semibold text-pink-700 mb-3">🧪 Full-Length Mock Tests</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+        <p class="text-gray-700">Simulates actual board exam with timer, auto-submit, and analytics.</p>
+        <ul class="list-disc list-inside text-sm text-gray-600 mt-2">
+            <li>Correct/Incorrect summary</li>
+            <li>Time per question</li>
+            <li>Topic-wise score breakdown</li>
+            <li>💡 AI Feedback: "Your geometry section needs revision."</li>
+        </ul>
+        <button class="mt-4 bg-pink-500 text-white px-4 py-2 rounded">🧪 Start Mock Test</button>
+    </div>
+</section>
+
+<!-- Chapter-wise Tests -->
+<section class="mb-10">
+    <h2 class="text-xl font-semibold text-green-700 mb-3">📘 Chapter-wise Practice Tests</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+        <p class="text-gray-700 mb-4">Select a chapter from the dropdown to begin practice:</p>
+        <div class="relative w-full max-w-sm">
+            <select class="w-full border border-gray-300 rounded-lg p-3 text-gray-700 shadow-sm">
+                <option value="">-- Select Chapter --</option>
+                <option value="linear">Linear Equations</option>
+                <option value="probability">Probability</option>
+                <option value="geometry">Geometry</option>
+                <option value="trigonometry">Trigonometry</option>
+                <option value="mensuration">Mensuration</option>
+                <option value="statistics">Statistics</option>
+            </select>
+        </div>
+        <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded">📘 Start Practice</button>
+    </div>
+</section>
+
+<!-- Results and Analytics -->
+<section class="mb-10">
+    <h2 class="text-xl font-semibold text-indigo-700 mb-3">📊 Instant Results & Analytics</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+        <ul class="list-disc list-inside text-sm text-gray-600">
+            <li>✅ Correct answers</li>
+            <li>❌ Wrong answers</li>
+            <li>⏱️ Time spent per section</li>
+            <li>📈 Graphs: Performance trend & topic-wise insights</li>
+            <li>🔁 Suggested actions: "Revise formulas", "Watch concept video"</li>
+            <li>📥 Download PDF Report</li>
+            <li>📊 Share performance with parents (via email)</li>
+        </ul>
+        <div class="mt-4 flex gap-4">
+            <button class="bg-indigo-600 text-white px-4 py-2 rounded">📈 View Analytics</button>
+            <button class="bg-indigo-500 text-white px-4 py-2 rounded">📥 Download Report</button>
+        </div>
+    </div>
+</section>
+
+<!-- Leaderboard -->
+<section class="mb-10">
+    <h2 class="text-xl font-semibold text-yellow-700 mb-3">🏆 Leaderboard (Optional)</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+        <p class="text-gray-700">See where you stand among your peers (requires login).</p>
+        <p class="text-sm text-gray-500 mt-2">Leaderboard resets weekly. Top 10 scorers get certificates!</p>
+        <button class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded">🏅 View Leaderboard</button>
+    </div>
+</section>
+
+<!-- Progress Tracker -->
+<section class="mb-10">
+    <h2 class="text-xl font-semibold text-red-700 mb-3">📈 Progress Tracker Dashboard</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+        <p class="text-gray-700 mb-3">Track performance by topic, see accuracy, time taken, and get personalized study
+            suggestions.</p>
+        <ul class="list-disc list-inside text-sm text-gray-600">
+            <li>📌 Chapter-wise accuracy</li>
+            <li>📆 Weekly improvement graph</li>
+            <li>🔔 Reminders for pending tests</li>
+        </ul>
+        <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded">📊 Open Dashboard</button>
+    </div>
+</section>
+
+{% endblock %}
