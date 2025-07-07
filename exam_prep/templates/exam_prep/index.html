@@ -1,39 +1,106 @@
-{% extends "base.html" %}
-{% block content %}
-<h1 class="text-3xl font-bold mb-6 text-center">📝 Exam Preparation Zone</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam Preparation Zone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6 font-sans">
+  <h1 class="text-3xl font-bold mb-6 text-center">📝 Exam Preparation Zone</h1>
 
-<!-- Previous Year Papers -->
-<section class="mb-10">
-  <h2 class="text-xl font-semibold text-blue-700 mb-3">📄 Previous Year Papers</h2>
-  {% for paper in papers %}
-  <div class="bg-white shadow-md rounded-2xl p-6 mb-4">
-    <p class="text-lg font-semibold">{{ paper.year }} CBSE {{ paper.subject.name }} Paper</p>
-    <p class="text-gray-600">🕒 Time: {{ paper.total_time|timesince:"0" }} | 📈 Marks: {{ paper.total_marks }}</p>
-    <div class="mt-4 flex gap-4 flex-wrap">
-      <a href="{% url 'exam:start-paper' paper.year %}"
-         class="bg-green-500 text-white px-4 py-2 rounded">▶️ Start Test</a>
-      <a href="{% url 'exam:pdf' paper.year %}"
-         class="bg-blue-500 text-white px-4 py-2 rounded">📄 View PDF</a>
+  <!-- Previous Year Papers Section -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-blue-700 mb-3">📄 Previous Year Papers</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+      <p class="text-lg font-semibold">2023 CBSE Class 10 Maths Paper</p>
+      <p class="text-gray-600">🕒 Time: 3 hrs | 📈 Marks: 80</p>
+      <div class="mt-4 flex gap-4">
+        <button class="bg-green-500 text-white px-4 py-2 rounded">▶️ Start Test</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded">📄 View PDF</button>
+        <button class="bg-purple-500 text-white px-4 py-2 rounded">🔍 View Solutions</button>
+      </div>
     </div>
-  </div>
-  {% endfor %}
-</section>
+  </section>
 
-<!-- Chapter‑wise dropdown -->
+  <!-- Mock Tests Section -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-pink-700 mb-3">🧪 Full-Length Mock Tests</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+      <p class="text-gray-700">Simulates actual board exam with timer, auto-submit, and analytics.</p>
+      <ul class="list-disc list-inside text-sm text-gray-600 mt-2">
+        <li>Correct/Incorrect summary</li>
+        <li>Time per question</li>
+        <li>Topic-wise score breakdown</li>
+        <li>💡 AI Feedback: "Your geometry section needs revision."</li>
+      </ul>
+      <button class="mt-4 bg-pink-500 text-white px-4 py-2 rounded">🧪 Start Mock Test</button>
+    </div>
+  </section>
+
+  <!-- Chapter-wise Tests -->
 <section class="mb-10">
   <h2 class="text-xl font-semibold text-green-700 mb-3">📘 Chapter-wise Practice Tests</h2>
   <div class="bg-white shadow-md rounded-2xl p-6">
-    <form method="get" action="#">
-      <label class="block mb-2 text-gray-700">Select a chapter:</label>
-      <select name="chapter" class="w-full border border-gray-300 rounded-lg p-3">
+    <p class="text-gray-700 mb-4">Select a chapter from the dropdown to begin practice:</p>
+    <div class="relative w-full max-w-sm">
+      <select class="w-full border border-gray-300 rounded-lg p-3 text-gray-700 shadow-sm">
         <option value="">-- Select Chapter --</option>
-        {% for ch in chapters %}
-        <option value="{{ ch.id }}">Ch {{ ch.number }} – {{ ch.name }}</option>
-        {% endfor %}
+        <option value="linear">Linear Equations</option>
+        <option value="probability">Probability</option>
+        <option value="geometry">Geometry</option>
+        <option value="trigonometry">Trigonometry</option>
+        <option value="mensuration">Mensuration</option>
+        <option value="statistics">Statistics</option>
       </select>
-      <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded">📘 Start Practice</button>
-    </form>
+    </div>
+    <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded">📘 Start Practice</button>
   </div>
 </section>
 
-<!-- … keep the rest of your static sections … -->
+  <!-- Results and Analytics -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-indigo-700 mb-3">📊 Instant Results & Analytics</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+      <ul class="list-disc list-inside text-sm text-gray-600">
+        <li>✅ Correct answers</li>
+        <li>❌ Wrong answers</li>
+        <li>⏱️ Time spent per section</li>
+        <li>📈 Graphs: Performance trend & topic-wise insights</li>
+        <li>🔁 Suggested actions: "Revise formulas", "Watch concept video"</li>
+        <li>📥 Download PDF Report</li>
+        <li>📊 Share performance with parents (via email)</li>
+      </ul>
+      <div class="mt-4 flex gap-4">
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded">📈 View Analytics</button>
+        <button class="bg-indigo-500 text-white px-4 py-2 rounded">📥 Download Report</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leaderboard -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-yellow-700 mb-3">🏆 Leaderboard (Optional)</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+      <p class="text-gray-700">See where you stand among your peers (requires login).</p>
+      <p class="text-sm text-gray-500 mt-2">Leaderboard resets weekly. Top 10 scorers get certificates!</p>
+      <button class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded">🏅 View Leaderboard</button>
+    </div>
+  </section>
+
+  <!-- Progress Tracker -->
+  <section class="mb-10">
+    <h2 class="text-xl font-semibold text-red-700 mb-3">📈 Progress Tracker Dashboard</h2>
+    <div class="bg-white shadow-md rounded-2xl p-6">
+      <p class="text-gray-700 mb-3">Track performance by topic, see accuracy, time taken, and get personalized study suggestions.</p>
+      <ul class="list-disc list-inside text-sm text-gray-600">
+        <li>📌 Chapter-wise accuracy</li>
+        <li>📆 Weekly improvement graph</li>
+        <li>🔔 Reminders for pending tests</li>
+      </ul>
+      <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded">📊 Open Dashboard</button>
+    </div>
+  </section>
+</body>
+</html>

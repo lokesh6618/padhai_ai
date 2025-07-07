@@ -8,7 +8,7 @@ def dashboard(request):
     papers = YearPaper.objects.select_related("subject").order_by("-year")
     chapters = Chapter.objects.filter(subject__name="Mathematics").order_by("number")
     context = {"papers": papers, "chapters": chapters}
-    return render(request, "exam/index.html", context)
+    return render(request, "exam_prep/index.html", context)
 
 
 def start_paper(request, year):
@@ -37,13 +37,13 @@ def attempt_question(request, attempt_id, q_index):
             return redirect("exam:results", attempt_id=attempt.id)
         return redirect("exam:attempt", attempt_id=attempt.id, q_index=next_index)
 
-    return render(request, "exam/question.html",
+    return render(request, "exam_prep/question.html",
                   {"attempt": attempt, "question": question, "index": q_index, "total": questions.count()})
 
 
 def results(request, attempt_id):
     attempt = get_object_or_404(ExamAttempt, id=attempt_id)
-    return render(request, "exam/results.html", {"attempt": attempt})
+    return render(request, "exam_prep/results.html", {"attempt": attempt})
 
 
 def view_pdf(request, year):
