@@ -55,3 +55,6 @@ class QuizAttempt(models.Model):
 
     def __str__(self):
         return f"{self.user} – {self.score}/20 on {self.started_at:%d %b %Y %H:%M}"
+    
+
+    
